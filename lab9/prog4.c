@@ -19,15 +19,13 @@ int stcompare(st st1, st st2)
 }
 int main()
 {
-    st s[5];
+    st s1={1,9.6,"IT"};
+    st s2={2,9,"CSE"};
+    st s3={3,5.3,"EEE"};
+    st s4={4,8.1,"CSE"};
+    st s5={5,7.2,"ETC"};
+    st s[5]={s1,s2,s3,s4,s5};
     int j,k;
-    for(j=0;j<5;j++)
-    {
-        printf("Enter rno, gpa and brach.\n");
-        scanf("%d",&s[j].rno);
-        scanf("%f",&s[j].gpa);
-        scanf("%s",&s[j].br);
-    }
     int maxindx=0;
     for(j=0;j<5;j++)
     {
@@ -35,7 +33,8 @@ int main()
         if(k==-1) 
         maxindx=j;
     }
-    printf("Topper of the class is Roll no. %d of %s branch.\n",s[maxindx].rno, s[maxindx].br);
+    printf("Topper of the class is Roll no. %d of %s branch with %0.2f gpa.\n",s[maxindx].rno, s[maxindx].br, 
+    s[maxindx].gpa);
 
     return 0;
 }
