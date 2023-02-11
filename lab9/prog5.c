@@ -12,7 +12,7 @@ int main(){
     car c3={"Tata", "Tiago", 23, 4};
     car c4={"Jaguar", "Ipace", 8.6, 2};
     car c5={"Toyota", "Sresso", 11.2, 4};
-    car a[5]={c1,c2,c3,c4,c5}
+    car a[5]={c1,c2,c3,c4,c5};
     printf("Property\t\tC1\t\tC2\t\tC3\t\tC4\t\tC5\n");
     printf("Brand\t\t\t%s \t%s \t%s \t%s\t%s\n",a[0].brand,a[1].brand,a[2].brand,a[3].brand,a[4].brand);
     printf("Model\t\t\t%s\t%s\t%s\t%s\t%s\n",a[0].model,a[1].model,a[2].model,a[3].model,a[4].model);
