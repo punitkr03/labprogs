@@ -32,6 +32,5 @@ int main(){
     imp m2={5,6};
     mtf(m1);
     ftm(m2);
-
     return 0;
 }
