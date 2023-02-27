@@ -11,7 +11,7 @@ int main()
 {
     typedef struct date D;
 
-    D a={2003,8,3};
+    D a={2003,8,4};
     D b={2023,2,9};
 
     if (a.day > b.day) 
