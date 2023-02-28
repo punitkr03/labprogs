@@ -26,7 +26,7 @@ int main()
     St s7={7, "Apple", 8.1};
     St s8={8, "Drew", 7.1};
     St s9={9, "Dom", 6.1};
-    St s10={10, "Tom", 8.1};
+    St s10={10, "Tom", 9.8};
 
     St arr[10]={s1,s2,s3,s4,s5,s6,s7,s8,s9,s10};
 
