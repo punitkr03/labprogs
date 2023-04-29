@@ -9,10 +9,18 @@ typedef struct Queue
     int rear;
 } Q;
 
+int isFull(Q *q) {
+    return (q->front == -1 && q->rear == -1) ? 0 : 1;
+}
+
+int isEmpty(Q *q) {
+    return (q->front == -1 && q->rear == -1) ? 1 : 0;
+}
+
 void enqueue(Q *q, int item)
 {
 
-    if (q->front == -1 && q->rear == -1)
+    if (!isFull(q))
     {
         q->front=0;
         q->rear=0;
@@ -32,7 +40,7 @@ void enqueue(Q *q, int item)
 
 void dequeue(Q *q)
 {
-    if (q->front == -1 && q->rear == -1)
+    if (isEmpty(q))
         printf("Queue Underflow!");
     else
         printf("%d is removed from queue.\n", q->arr[q->front++]);
