@@ -46,10 +46,7 @@ void push(S *s, int item)
 void pop(S *s)
 {
     if (isEmpty(s))
-    {
         printf("Stack Underflow.\n");
-        return -1;
-    }
     else
     {
         int val = s->items[s->top--];
