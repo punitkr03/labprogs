@@ -11,7 +11,7 @@ typedef struct Queue
 
 int isFull(Q *q)
 {
-    return (q->front == -1 && q->rear == -1) ? 0 : 1;
+    return (q->rear == 99) ? 1 : 0;
 }
 
 int isEmpty(Q *q)
@@ -22,14 +22,14 @@ int isEmpty(Q *q)
 void enqueue(Q *q, int item)
 {
 
-    if (!isFull(q))
+    if (isEmpty(q))
     {
         q->front = 0;
         q->rear = 0;
         q->arr[q->rear] = item;
         printf("%d is added to queue.\n", q->arr[q->rear]);
     }
-    else if (q->rear >= 99)
+    else if (isFull(q))
     {
         printf("Queue Overflow!");
     }
