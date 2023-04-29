@@ -43,7 +43,7 @@ void push(S *s, int item)
 }
 
 // function to pop an item from the stack
-int pop(S *s)
+void pop(S *s)
 {
     if (isEmpty(s))
     {
