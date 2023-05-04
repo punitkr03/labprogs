@@ -1,4 +1,4 @@
 # Program 1 output <br>
-abc*d/+
+ABC*D/+F-AE*+
 # Program 2 output <br>
-1000
+-94

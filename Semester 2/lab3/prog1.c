@@ -89,7 +89,7 @@ void infixToPostfix(char *infix)
 
 int main()
 {
-	char infix[MAX] = "a+b*c/d";
+	char infix[MAX] = "A+B*C/D-F+A*E";
 
 	infixToPostfix(infix);
 	return 0;

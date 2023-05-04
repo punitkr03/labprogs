@@ -55,7 +55,7 @@ int evaluatePostfix(char *exp)
     // Scan all characters one by one
     for (i = 0; exp[i]; i++)
     {
-        if (exp[i] == ' ')
+        if (exp[i] == ',')
             continue;
         // If digit push in stack
         else if (isdigit(exp[i]))
@@ -93,13 +93,20 @@ int evaluatePostfix(char *exp)
         }
     }
     // return last element
-    return pop(stack);
+    int val = pop(stack);
+    if (stack->top == -1)
+    {
+        return val;
+    }
+    else
+    return -1;
+    
 }
 
 // Driver program to test above functions
 int main()
 {
-    char exp[] = "900 100 +";
+    char exp[] = "2,8,-,4,+,5,6,7,*,+,*";
     printf("%d", evaluatePostfix(exp));
     return 0;
 }
