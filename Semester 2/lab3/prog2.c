@@ -23,29 +23,14 @@ S *createStack(int size)
     return stack;
 }
 
-int isEmpty(S *stack)
-{
-    return stack->top == -1;
-}
-
-int isFull(S *stack)
-{
-    return stack->top == stack->size - 1;
-}
-
 int pop(S *stack)
 {
-    if (!isEmpty(stack))
-        return stack->array[stack->top--];
-    return -1;
+    return stack->array[stack->top--];
 }
 
 void push(S *stack, int op)
 {
-    if (!isFull(stack))
-        stack->array[++stack->top] = op;
-    else
-        printf("Stack Overflow!\n");
+    stack->array[++stack->top] = op;
 }
 
 int evaluatePostfix(char *exp)
@@ -53,7 +38,7 @@ int evaluatePostfix(char *exp)
     S *stack = createStack(strlen(exp));
     int i;
     // Scan all characters one by one
-    for (i = 0; exp[i]; i++)
+    for (i = 0; exp[i]!='\0'; i++)
     {
         if (exp[i] == ',')
             continue;
@@ -95,18 +80,18 @@ int evaluatePostfix(char *exp)
     // return last element
     int val = pop(stack);
     if (stack->top == -1)
-    {
         return val;
-    }
     else
-    return -1;
-    
+        return -1;
 }
 
 // Driver program to test above functions
 int main()
 {
     char exp[] = "2,8,-,4,+,5,6,7,*,+,*";
+    if(evaluatePostfix(exp) == -1)
+    printf("Invalid expression.\n");
+    else
     printf("%d", evaluatePostfix(exp));
     return 0;
 }
