@@ -1,4 +1,4 @@
-//Program to perform insertion in Singly-linked list.
+// Program to perform deletion in Singly-linked list.
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -46,80 +46,81 @@ node *createLL(int n)
     return head;
 }
 
-node *insertB(int data)
+node *deleteB()
 {
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    new->next = head;
-    head = new;
+    node *temp = head;
+    head = head->next;
+    free(temp);
     displayLL(head);
     return head;
 }
 
-node *insertE(int data)
+node *deleteE()
 {
-    node *new = malloc(sizeof(node));
-    new->data = data;
     node *temp = head;
-    while (temp->next != NULL)
+    while (temp->next->next != NULL)
     {
         temp = temp->next;
     }
-    temp->next = new;
-    new->next = NULL;
-    displayLL(head);
-    return head;
-}
-
-node *insertBetween(int data, int target)
-{
-    node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    while (temp->data != target)
-        temp = temp->next;
     node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
+    temp->next = NULL;
+    free(temp2);
     displayLL(head);
     return head;
 }
 
-node *insertAfter(int data, int target)
+node *deleteTarget(int target)
 {
     node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    while (temp->data != target)
-        temp = temp->next;
-    node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
-    displayLL(head);
-    return head;
-}
-
-node *insertBefore(int data, int target)
-{
-    node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
     while (temp->next->data != target)
+    {
         temp = temp->next;
+    }
+    node *temp2 = temp->next->next;
+    node *temp3 = temp->next;
+    temp->next = temp2;
+    free(temp3);
+    displayLL(head);
+    return head;
+}
+
+node *deleteBefore(int target)
+{
+    node *temp = head;
+    while (temp->next->next->data != target)
+    {
+        temp = temp->next;
+    }
     node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
+    node *temp3 = temp->next->next;
+    temp->next = temp3;
+    free(temp2);
+    displayLL(head);
+    return head;
+}
+
+node *deleteAfter(int target)
+{
+    node *temp = head;
+    while (temp->data != target)
+    {
+        temp = temp->next;
+    }
+    node *temp2 = temp->next;
+    node *temp3 = temp->next->next;
+    temp->next = temp3;
+    free(temp2);
     displayLL(head);
     return head;
 }
 
 int main()
 {
-    head = createLL(3);
-    head = insertB(4);
-    head = insertE(5);
-    head = insertBetween(6, 2);
-    head = insertBefore(7, 1);
-    head = insertAfter(8, 3);
+    head = createLL(8);
+    head = deleteB();
+    head = deleteE();
+    head = deleteTarget(5);
+    head = deleteBefore(4);
+    head = deleteAfter(4);
     return 0;
 }
