@@ -1,4 +1,4 @@
-// Program to perform insertion in Doubly-linked list.
+// Program to implement Doubly-linked list.
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -45,7 +45,7 @@ node *createLL(int n)
             new->prev = temp;
         }
     }
-    displayLL(head);
+    displayLL();
     return head;
 }
 
@@ -56,7 +56,7 @@ node *insertB(int data)
     new->next = head;
     head = new;
     new->prev = NULL;
-    displayLL(head);
+    displayLL();
     return head;
 }
 
@@ -72,23 +72,7 @@ node *insertE(int data)
     temp->next = new;
     new->next = NULL;
     new->prev = temp;
-    displayLL(head);
-    return head;
-}
-
-node *insertBetween(int data, int target)
-{
-    node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    while (temp->data != target)
-        temp = temp->next;
-    node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
-    temp2->prev = new;
-    new->prev = temp;
-    displayLL(head);
+    displayLL();
     return head;
 }
 
@@ -104,33 +88,58 @@ node *insertAfter(int data, int target)
     new->next = temp2;
     temp2->prev = new;
     new->prev = temp;
-    displayLL(head);
+    displayLL();
     return head;
 }
 
-node *insertBefore(int data, int target)
+node *deleteB()
 {
     node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    while (temp->next->data != target)
+    head = head->next;
+    free(temp);
+    head->prev = NULL;
+    displayLL();
+    return head;
+}
+
+node *deleteE()
+{
+    node *temp = head;
+    while (temp->next->next != NULL)
+    {
         temp = temp->next;
+    }
     node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
-    temp2->prev = new;
-    new->prev = temp;
-    displayLL(head);
+    temp->next = NULL;
+    free(temp2);
+    displayLL();
+    return head;
+}
+
+node *deleteTarget(int target)
+{
+    node *temp = head;
+    while (temp->data != target)
+    {
+        temp = temp->next;
+    }
+    node *temp2 = temp->next;
+    node *temp3 = temp->prev;
+    temp3->next = temp2;
+    temp2->prev = temp3;
+    free(temp);
+    displayLL();
     return head;
 }
 
 int main()
 {
-    head = createLL(3);
-    head = insertB(4);
-    head = insertE(5);
-    head = insertBetween(6, 2);
-    head = insertBefore(7, 1);
-    head = insertAfter(8, 3);
+    head = createLL(4);
+    head = insertB(5);
+    head = insertE(6);
+    head = insertAfter(7, 2);
+    head = deleteB();
+    head = deleteE();
+    head = deleteTarget(7);
     return 0;
 }
