@@ -1,24 +1,24 @@
-// Program to implement Doubly-linked list.
+// Program to implement Circular Linked list.
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct NODE
 {
     int data;
-    struct NODE *prev;
     struct NODE *next;
 } node;
 
 node *head;
 
-void displayLL()
+void display()
 {
-    node *temp = head;
-    while (temp != NULL)
+    node *temp;
+    temp = head;
+    do
     {
-        printf("-> %d ", temp->data);
+        printf("%d  ", temp->data);
         temp = temp->next;
-    }
+    } while (temp != head);
     printf("\n");
 }
 
@@ -30,7 +30,6 @@ node *createLL(int n)
     {
         node *new = (node *)malloc(sizeof(node));
         new->data = i;
-        new->prev = NULL;
         new->next = NULL;
         if (head == NULL)
         {
@@ -42,93 +41,73 @@ node *createLL(int n)
             while (temp->next != NULL)
                 temp = temp->next;
             temp->next = new;
-            new->prev = temp;
         }
     }
-    displayLL();
+    temp = temp->next;
+    temp->next = head;
+    display();
     return head;
 }
 
 node *insertB(int data)
 {
-    node *new = malloc(sizeof(node));
+    node *new;
+    new = (node *)malloc(sizeof(node));
     new->data = data;
+    node *temp = head;
+    do
+    {
+        temp = temp->next;
+    } while (temp->next != head);
     new->next = head;
     head = new;
-    new->prev = NULL;
-    displayLL();
+    temp->next = head;
+    display();
     return head;
 }
 
 node *insertE(int data)
 {
-    node *new = malloc(sizeof(node));
+    node *new;
+    new = (node *)malloc(sizeof(node));
     new->data = data;
     node *temp = head;
-    while (temp->next != NULL)
+    while (temp->next != head)
     {
         temp = temp->next;
     }
     temp->next = new;
-    new->next = NULL;
-    new->prev = temp;
-    displayLL();
-    return head;
-}
-
-node *insertAfter(int data, int target)
-{
-    node *temp = head;
-    node *new = malloc(sizeof(node));
-    new->data = data;
-    while (temp->data != target)
-        temp = temp->next;
-    node *temp2 = temp->next;
-    temp->next = new;
-    new->next = temp2;
-    temp2->prev = new;
-    new->prev = temp;
-    displayLL();
+    new->next = head;
+    display();
     return head;
 }
 
 node *deleteB()
 {
+    node *ptr = head;
     node *temp = head;
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
     head = head->next;
-    free(temp);
-    head->prev = NULL;
-    displayLL();
+    temp->next = head;
+    free(ptr);
+    display();
     return head;
 }
 
 node *deleteE()
 {
     node *temp = head;
-    while (temp->next->next != NULL)
+    while (temp->next->next != head)
     {
         temp = temp->next;
     }
-    node *temp2 = temp->next;
-    temp->next = NULL;
-    free(temp2);
-    displayLL();
-    return head;
-}
-
-node *deleteTarget(int target)
-{
-    node *temp = head;
-    while (temp->data != target)
-    {
-        temp = temp->next;
-    }
-    node *temp2 = temp->next;
-    node *temp3 = temp->prev;
-    temp3->next = temp2;
-    temp2->prev = temp3;
-    free(temp);
-    displayLL();
+    node *ptr = temp->next;
+    temp->next = head;
+    free(ptr);
+    display();
     return head;
 }
 
@@ -137,9 +116,7 @@ int main()
     head = createLL(4);
     head = insertB(5);
     head = insertE(6);
-    head = insertAfter(7, 2);
     head = deleteB();
     head = deleteE();
-    head = deleteTarget(7);
     return 0;
 }
