@@ -72,22 +72,11 @@ node* insertNode(node* root, int data) {
     return root;
 }
 
-node* createTreeNode(node* root, int data) {
-    if (root == NULL) {
-        return createNode(data);
-    } else {
-        if (data <= root->data) {
-            root->left = createTreeNode(root->left, data);
-        } else {
-            root->right = createTreeNode(root->right, data);
-        }
-    }
-}
 node* createTree() {
     int i;
     int data[] = {8,3,10};
     for(i=0; i<3; i++) {
-        root = createTreeNode(root,data[i]);
+        root = createNode(data[i]);
     }
     display(root);
     return root;
