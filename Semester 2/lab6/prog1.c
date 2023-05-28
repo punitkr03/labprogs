@@ -83,10 +83,11 @@ node* createTreeNode(node* root, int data) {
         }
     }
 }
-node* createTree(int n) {
+node* createTree() {
     int i;
-    for(i=1; i<=n; i++) {
-        root = createTreeNode(root,i);
+    int data[] = {8,3,10};
+    for(i=0; i<3; i++) {
+        root = createTreeNode(root,data[i]);
     }
     display(root);
     return root;
@@ -130,20 +131,18 @@ node* deleteNode(node* root, int value) {
 }
 
 int main() {
-    // Create the binary tree
-    root = createTree(3);
-    
-    root = insertNode(root, 4);
+    createTree();
+    insertNode(root, 1);
     display(root);
-    root = insertNode(root, 5);
+    insertNode(root, 6);
     display(root);
-    root = insertNode(root, 6);
+    insertNode(root, 14);
     display(root);
-    root = insertNode(root, 7);
+    insertNode(root, 4);
     display(root);
-    root = insertNode(root, 8);
+    insertNode(root, 7);
     display(root);
-    root = deleteNode(root, 4);
+    deleteNode(root, 3);
     display(root);
 
     return 0;
