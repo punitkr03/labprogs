@@ -76,7 +76,7 @@ node* createTree() {
     int i;
     int data[] = {8,3,10};
     for(i=0; i<3; i++) {
-        root = createNode(data[i]);
+        root = insertNode(root, data[i]);
     }
     display(root);
     return root;
