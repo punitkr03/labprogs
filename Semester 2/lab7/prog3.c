@@ -2,9 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void display(int arr[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        printf("%d ", (arr[i]));
+    printf("\n");
+}
 void bubble_sort(int arr[], int n)
 {
     int i, j, temp;
+    printf("Bubble sort : \n");
     for (i = 0; i < (n - 1); i++)
     {
         for (j = 0; j < n - 1; j++)
@@ -14,16 +22,14 @@ void bubble_sort(int arr[], int n)
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
+        display(arr, n);
     }
-    printf("Array after bubble sort : ");
-    for (i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
 }
 
 void selection_sort(int arr[], int n)
 {
     int i, j, temp, min;
+    printf("Selection sort : \n");
     for (i = 0; i < n - 1; i++)
     {
         min = i;
@@ -38,16 +44,14 @@ void selection_sort(int arr[], int n)
             arr[i] = arr[min];
             arr[min] = temp;
         }
+        display(arr, n);
     }
-    printf("Array after selection sort : ");
-    for (i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
 }
 
 void insertion_sort(int arr[], int n)
 {
     int i, j, temp;
+    printf("Insertion sort : \n");
     for (i = 1; i < n; i++)
     {
         temp = arr[i];
@@ -58,20 +62,19 @@ void insertion_sort(int arr[], int n)
             j--;
         }
         arr[j + 1] = temp;
+        display(arr, n);
     }
-    printf("Array after insertion sort : ");
-    for (i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
 }
 
 int main()
 {
 
-    int arr[5] = {11, 2, 42, 4, 97};
-    bubble_sort(arr, 5);
-    selection_sort(arr, 5);
-    insertion_sort(arr, 5);
+    int arr1[5] = {97,55,44,22,11};
+    int arr2[5] = {97,55,44,22,11};
+    int arr3[5] = {97,55,44,22,11};
+    bubble_sort(arr1, 5);
+    selection_sort(arr2, 5);
+    insertion_sort(arr3, 5);
 
     return 0;
 }
