@@ -68,13 +68,13 @@ void insertion_sort(int arr[], int n)
 
 int main()
 {
-
-    int arr1[5] = {97,55,44,22,11};
-    int arr2[5] = {97,55,44,22,11};
-    int arr3[5] = {97,55,44,22,11};
-    bubble_sort(arr1, 5);
-    selection_sort(arr2, 5);
-    insertion_sort(arr3, 5);
+    int n = 7;
+    int arr1[] = {13,9,2,12,7,64,25};
+    int arr2[] = {13,9,2,12,7,64,25};
+    int arr3[] = {13,9,2,12,7,64,25};
+    bubble_sort(arr1, n);
+    selection_sort(arr2, n);
+    insertion_sort(arr3, n);
 
     return 0;
 }

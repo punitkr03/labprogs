@@ -42,20 +42,15 @@ int binary_recursive(int arr[], int target, int s, int e)
 
 int main()
 {
-    int n = 5, i;
-    int arr[n];
-    for (i = 0; i < n; i++)
-        arr[i] = i + 1;
-    printf("Enter a number to search.\n");
-    int target;
-    scanf("%d", &target);
-
+    int n = 7;
+    int i, target=13, s=0, e=n-1;
+    int arr[] = {2,7,9,12,13,25,64};
     binary_iterative(arr, target, n);
-
-    int res = binary_recursive(arr, target, 0, n - 1);
-    if (res >= 0)
-        printf("Element found at index %d.\n", res);
+    int result = binary_recursive(arr, target, s, e);
+    if (result == -1)
+        printf("Element not found.\n");
     else
-        printf("Element not found. \n");
+        printf("Element found at index %d.\n", result);
+    
     return 0;
 }

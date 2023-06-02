@@ -30,13 +30,9 @@ int linear_recursion(int arr[], int n, int target)
 
 int main()
 {
-    int n = 5;
-    int i, target;
-    int arr[n];
-    for (i = 0; i < n; i++)
-        arr[i] = i + 1;
-    printf("Enter the element to be searched: ");
-    scanf("%d", &target);
+    int n = 7;
+    int i, target=13;
+    int arr[] = {2,7,9,12,13,25,64};
     linear_search(arr, n, target);
     int result = linear_recursion(arr, n, target);
     if (result == -1)
