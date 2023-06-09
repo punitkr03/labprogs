@@ -1,16 +1,31 @@
-//Program to implement quick sort.
+// Program to implement quick sort.
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(int *a, int *b) {
-    int t = *a; *a = *b; *b = t;
+void display(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
 
-int partition(int arr[], int s, int e) {
+void swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int partition(int arr[], int s, int e)
+{
     int pivot = arr[e];
     int i = s - 1;
-    for (int j = s; j < e; j++) {
-        if (arr[j] < pivot) {
+    for (int j = s; j < e; j++)
+    {
+        if (arr[j] < pivot)
+        {
             i++;
             swap(&arr[i], &arr[j]);
         }
@@ -19,22 +34,26 @@ int partition(int arr[], int s, int e) {
     return i + 1;
 }
 
-void quicksort(int arr[], int s, int e) {
-    if (s < e) {
+void quicksort(int arr[], int s, int e)
+{
+    if (s < e)
+    {
         int p = partition(arr, s, e);
         quicksort(arr, s, p - 1);
         quicksort(arr, p + 1, e);
     }
 }
 
-int main() {
-    int arr[] = {5, 4, 3, 2, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
+int main()
+{
+    int n = 8;
+    int arr[] = {7, 6, 3, 2, 1, 8, 5, 4};
 
+    printf("Before sorting:\n");
+    display(arr, n);
     quicksort(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
+    printf("After sorting:\n");
+    display(arr, n);
 
     return 0;
 }

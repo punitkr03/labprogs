@@ -1,12 +1,27 @@
+//Program to implement merge sort.
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge(int left[], int right[], int lsize, int rsize, int merged[]) {
+void display(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void merge(int left[], int right[], int lsize, int rsize, int merged[])
+{
     int i = 0, j = 0, k = 0;
-    while (i < lsize && j < rsize) {
-        if (left[i] <= right[j]) {
+    while (i < lsize && j < rsize)
+    {
+        if (left[i] <= right[j])
+        {
             merged[k++] = left[i++];
-        } else {
+        }
+        else
+        {
             merged[k++] = right[j++];
         }
     }
@@ -16,8 +31,10 @@ void merge(int left[], int right[], int lsize, int rsize, int merged[]) {
         merged[k++] = right[j++];
 }
 
-void mergesort(int arr[], int s, int e) {
-    if (s < e) {
+void mergesort(int arr[], int s, int e)
+{
+    if (s < e)
+    {
         int mid = (s + e) / 2;
 
         mergesort(arr, s, mid);
@@ -46,14 +63,15 @@ void mergesort(int arr[], int s, int e) {
     }
 }
 
-int main() {
-    int arr[] = {5, 4, 3, 2, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
+int main()
+{
+    int n = 8;
+    int arr[] = {7, 6, 3, 2, 1, 8, 5, 4};
+    printf("Before sorting:\n");
+    display(arr, n);
     mergesort(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
+    printf("After sorting:\n");
+    display(arr, n);
 
     return 0;
 }
