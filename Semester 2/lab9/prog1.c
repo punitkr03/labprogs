@@ -9,22 +9,6 @@ typedef struct
     int numNodes;
 } Graph;
 
-void printGraph(Graph *graph)
-{
-    int i, j;
-
-    printf("Adjacency Matrix:\n");
-
-    for (i = 0; i < graph->numNodes; i++)
-    {
-        for (j = 0; j < graph->numNodes; j++)
-        {
-            printf("%d ", graph->adj_matrix[i][j]);
-        }
-        printf("\n");
-    }
-}
-
 void displayDFS(Graph *graph, int startNode)
 {
     int stack[MAX_NODES];
@@ -38,7 +22,6 @@ void displayDFS(Graph *graph, int startNode)
     while (top != -1)
     {
         currentNode = stack[top--];
-
         for (i = 0; i < graph->numNodes; i++)
         {
             if (graph->adj_matrix[currentNode][i] == 1 && visited[i] == 0)
@@ -62,7 +45,6 @@ void displayBFS(Graph *graph, int startNode)
     visited[startNode] = 1;
     printf("%d ", startNode);
     queue[rear++] = startNode;
-
     while (front != rear)
     {
         currentNode = queue[front++];
@@ -80,12 +62,22 @@ void displayBFS(Graph *graph, int startNode)
     printf("\n");
 }
 
+void insertEdge(Graph *graph, int node1, int node2)
+{
+    if (node1 >= graph->numNodes || node2 >= graph->numNodes)
+    {
+        printf("Invalid node.\n");
+        return;
+    }
+    // Flip 0 to 1
+    graph->adj_matrix[node1][node2] = 1;
+    graph->adj_matrix[node2][node1] = 1;
+}
+
 void createGraph(Graph *graph, int numNodes)
 {
     int i, j;
     graph->numNodes = numNodes;
-
-    // Initialize all matrix elements to 0
     for (i = 0; i < numNodes; i++)
     {
         for (j = 0; j < numNodes; j++)
@@ -93,6 +85,13 @@ void createGraph(Graph *graph, int numNodes)
             graph->adj_matrix[i][j] = 0;
         }
     }
+    insertEdge(graph, 0, 1);
+    insertEdge(graph, 1, 2);
+    insertEdge(graph, 1, 3);
+    insertEdge(graph, 1, 4);
+    insertEdge(graph, 2, 4);
+    insertEdge(graph, 2, 3);
+    insertEdge(graph, 4, 5);
 }
 
 void insertNode(Graph *graph)
@@ -102,46 +101,19 @@ void insertNode(Graph *graph)
         printf("Maximum number of nodes reached.\n");
         return;
     }
-
     // Node increment
     graph->numNodes++;
-}
-
-void insertEdge(Graph *graph, int node1, int node2)
-{
-    if (node1 >= graph->numNodes || node2 >= graph->numNodes)
-    {
-        printf("Invalid node.\n");
-        return;
-    }
-
-    // Flip 0 to 1
-    graph->adj_matrix[node1][node2] = 1;
-    graph->adj_matrix[node2][node1] = 1;
 }
 
 int main()
 {
     Graph graph;
-    int numNodes = 5;
-
+    int numNodes = 6;
     createGraph(&graph, numNodes);
-
     insertNode(&graph);
-    insertNode(&graph);
-
-    insertEdge(&graph, 0, 1);
-    insertEdge(&graph, 0, 2);
-    insertEdge(&graph, 1, 2);
-    insertEdge(&graph, 2, 3);
-    insertEdge(&graph, 3, 4);
-    insertEdge(&graph, 4, 5);
-    insertEdge(&graph, 5, 6);
-    insertEdge(&graph, 6, 7);
-
-    printGraph(&graph);
-
-    displayBFS(&graph, 0);
+    insertEdge(&graph, 2, 6);
+    insertEdge(&graph, 4, 6);
     displayDFS(&graph, 0);
+    displayBFS(&graph, 0);
     return 0;
 }
