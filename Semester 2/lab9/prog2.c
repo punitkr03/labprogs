@@ -1,4 +1,4 @@
-// Program to implement graph and perform insertion.
+// Program to implement graph and perform deletion.
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_NODES 100
