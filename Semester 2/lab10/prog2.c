@@ -52,11 +52,12 @@ void insert(HS* ht, int value) {
 
 int main() {
     HS hashTable;
+    int arr[] = {10, 70, 32, 73, 26, 52, 88, 12};
     createHashTable(&hashTable);
-    insert(&hashTable, 50);
-    insert(&hashTable, 21);
-    insert(&hashTable, 60);
+    int i;
+    for(i = 0; i < 8; i++) {
+        insert(&hashTable, arr[i]);
+    }
     displayHashTable(&hashTable);
-
     return 0;
 }
